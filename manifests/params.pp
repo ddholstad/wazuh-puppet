@@ -56,6 +56,18 @@ class wazuh::params {
           }
 
           case $::lsbdistcodename {
+            'focal': {
+              $server_service = 'wazuh-manager'
+              $server_package = 'wazuh-manager'
+              $api_service = 'wazuh-api'
+              $api_package = 'wazuh-api'
+              $wodle_openscap_content = {
+                'ssg-ubuntu-1604-ds.xml' => {
+                  'type' => 'xccdf',
+                  profiles => ['xccdf_org.ssgproject.content_profile_common'],
+                },
+              }
+            }
             'xenial': {
               $server_service = 'wazuh-manager'
               $server_package = 'wazuh-manager'
